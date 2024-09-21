@@ -1,0 +1,29 @@
+name: Check Repo Setup
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight
+
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  check_setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      
+      - name: Install dependencies
+        run: |
+          pip install requests PyGithub
+
+      - name: Run repo setup check script
+        run: |
+          python check_repo_setup.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
