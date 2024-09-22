@@ -50,7 +50,7 @@ if __name__ == "__main__":
     # Argument parsing
     parser = argparse.ArgumentParser(description="Check repo setup and update GitHub issues.")
     parser.add_argument('--yaml-file', type=str, default='repos.yml', help="Path to the YAML file with repository config.")
-    parser.add_argument('--token', type=str, default=os.getenv('GITHUB_TOKEN'), help="GitHub API token (default from environment variable).")
+    parser.add_argument('--token', type=str, default=os.getenv('TOKEN'), help="GitHub API token (default from environment variable).")
     parser.add_argument('--owner', type=str, default=os.getenv('REPO_OWNER'), help="Repository owner (default from environment variable).")
     
     args = parser.parse_args()
