@@ -1,4 +1,4 @@
-name: Check Repo Setup
+name: check-repo-setup
 
 on:
   schedule:
