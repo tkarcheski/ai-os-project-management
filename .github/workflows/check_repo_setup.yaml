@@ -8,7 +8,6 @@ on:
 jobs:
   check-setup:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -24,7 +23,7 @@ jobs:
 
       - name: Run Check Repo Setup Script
         run: |
-          python scripts/check_repo_setup.py --yaml-file config/repos.yml --token ${{ secrets.TOKEN }} --owner ${{ secrets.REPO_OWNER }}
+          python scripts/check_repo_setup.py --yaml-file config/repos.yml --token $TOKEN --owner $REPO_OWNER
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN: ${{ secrets.TOKEN }}
           REPO_OWNER: ${{ secrets.REPO_OWNER }}
