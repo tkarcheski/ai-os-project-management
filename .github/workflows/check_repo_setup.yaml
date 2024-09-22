@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Check Repo Setup Script
         run: |
-          python scripts/check_repo_setup.py --yaml-file config/repos.yml --token ${{ secrets.GITHUB_TOKEN }} --owner ${{ secrets.REPO_OWNER }}
+          python scripts/check_repo_setup.py --yaml-file config/repos.yml --token ${{ secrets.TOKEN }} --owner ${{ secrets.REPO_OWNER }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_OWNER: ${{ secrets.REPO_OWNER }}
