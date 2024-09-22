@@ -1,0 +1,33 @@
+# Core files required for all repositories
+core_files:
+  - README.md
+  - LICENSE.md
+  - .pre-commit-config.yaml
+  - check_dev.sh
+
+# Repositories and their custom file requirements
+repositories:
+  - name: ai-os-kernel
+    custom_files:
+      - kernel_config.yaml
+      - kernel_tests.py
+
+  - name: ai-engine
+    custom_files:
+      - ai_model.py
+      - data_pipeline.yaml
+
+  - name: blockchain-layer
+    custom_files:
+      - blockchain_config.yaml
+      - smart_contract.sol
+
+  - name: ai-os-api-layer
+    custom_files:
+      - api_routes.yaml
+      - auth_service.py
+
+  - name: ai-os-ui
+    custom_files:
+      - ui_components.js
+      - dashboard_layout.html
