@@ -22,9 +22,8 @@ jobs:
           pip install requests PyGithub pyyaml
 
       - name: Run Check Repo Setup Script
-        run: |
-          ls -al
-          python scripts/check_repo_setup.py --yaml-file config/repos.yaml
         env:
           TOKEN: ${{ secrets.TOKEN }}
           REPO_OWNER: ${{ secrets.REPO_OWNER }}
+        run: |
+          python scripts/check_repo_setup.py --yaml-file config/repos.yml
