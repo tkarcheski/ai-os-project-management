@@ -2,28 +2,29 @@ name: Check Repo Setup
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight
-
-  workflow_dispatch:  # Allows manual trigger
+    - cron: '0 0 * * *'  # Run daily at midnight
+  workflow_dispatch:  # Allows manual triggering from the Actions tab
 
 jobs:
-  check_setup:
+  check-setup:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-      
+
       - name: Install dependencies
         run: |
-          pip install requests PyGithub
+          pip install requests PyGithub pyyaml
 
-      - name: Run repo setup check script
+      - name: Run Check Repo Setup Script
         run: |
-          python check_repo_setup.py
+          python scripts/check_repo_setup.py --yaml-file config/repos.yml --token ${{ secrets.GITHUB_TOKEN }} --owner ${{ secrets.REPO_OWNER }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_OWNER: ${{ secrets.REPO_OWNER }}
