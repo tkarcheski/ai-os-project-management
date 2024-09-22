@@ -23,7 +23,8 @@ jobs:
 
       - name: Run Check Repo Setup Script
         run: |
-          python scripts/check_repo_setup.py --yaml-file config/repos.yml
+          ls -al
+          python scripts/check_repo_setup.py --yaml-file ./config/repos.yml
         env:
           TOKEN: ${{ secrets.TOKEN }}
           REPO_OWNER: ${{ secrets.REPO_OWNER }}
