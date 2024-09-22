@@ -1,8 +1,11 @@
 import os
 import requests
-from github import Github
 import yaml
 import argparse
+
+from github import Github
+# Authentication is defined via github.Auth
+from github import Auth
 
 # Function to load repositories and required files from a YAML file
 def load_config(yaml_file):
@@ -27,7 +30,10 @@ def check_repo_setup(repo_name, core_files, custom_files, token, owner):
 
 # Function to update issues in each repository
 def update_issues(repo_name, missing_files, token, owner):
-    g = Github(token)
+    # using an access token
+    auth = Auth.Token(token)
+    g = Github(auth=auth)
+    
     repo = g.get_repo(f'{owner}/{repo_name}')
     issues = repo.get_issues(state='open')
 
@@ -36,6 +42,9 @@ def update_issues(repo_name, missing_files, token, owner):
             issue.create_comment(f"All required files are set up in {repo_name}.")
         else:
             issue.create_comment(f"The following files are missing in {repo_name}: {', '.join(missing_files)}")
+                
+    # To close connections after use
+    g.close()
 
 # Main function to check all repos and update issues
 def check_all_repos(yaml_file, token, owner):
